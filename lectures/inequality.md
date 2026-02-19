@@ -284,7 +284,7 @@ for var in varlist:
         # Repeat the observations according to their weights
         counts = list(round(df[df['year'] == year]['weights'] )) 
         y = df[df['year'] == year][var].repeat(counts)
-        y = np.asarray(y)
+        y = np.array(y)
         
         # Shuffle the sequence to improve the plot
         rd.shuffle(y)    

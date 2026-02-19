@@ -29,7 +29,6 @@ In addition to the packages already installed by Anaconda, this lecture requires
 :tags: [hide-output]
 
 !pip install wbgapi
-!pip install pandas-datareader
 ```
 
 We use the following imports
@@ -39,7 +38,16 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import datetime
 import wbgapi as wb
-import pandas_datareader.data as web
+
+def fetch_fred(series_id, start, end):
+    """Fetch a data series from FRED."""
+    start_str = start.strftime('%Y-%m-%d')
+    end_str = end.strftime('%Y-%m-%d')
+    url = (f'https://fred.stlouisfed.org/graph/fredgraph.csv'
+           f'?id={series_id}&cosd={start_str}&coed={end_str}')
+    df = pd.read_csv(url, index_col=0, parse_dates=True)
+    df.columns = [series_id]
+    return df
 ```
 
 Here's some minor code to help with colors in our plots.
@@ -56,7 +64,7 @@ plt.rc('axes', prop_cycle=cycler)
 
 ## Data acquisition
 
-We will use the World Bank's data API `wbgapi` and `pandas_datareader` to retrieve data.
+We will use the World Bank's data API `wbgapi` and [FRED](https://fred.stlouisfed.org/) to retrieve data.
 
 We can use `wb.series.info` with the argument `q` to query available data from
 the [World Bank](https://www.worldbank.org/en/home).
@@ -324,16 +332,14 @@ We study unemployment using rate data from FRED spanning from [1929-1942](https:
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(1942, 6, 1)
 
-unrate_history = web.DataReader('M0892AUSM156SNBR', 
-                    'fred', start_date,end_date)
+unrate_history = fetch_fred('M0892AUSM156SNBR', start_date, end_date)
 unrate_history.rename(columns={'M0892AUSM156SNBR': 'UNRATE'}, 
                 inplace=True)
 
 start_date = datetime.datetime(1948, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-unrate = web.DataReader('UNRATE', 'fred', 
-                    start_date, end_date)
+unrate = fetch_fred('UNRATE', start_date, end_date)
 ```
 
 Let's plot the unemployment rate in the US from 1929 to 2022 with recessions
@@ -361,7 +367,7 @@ unrate_census.set_index('DATE', inplace=True)
 start_date = datetime.datetime(1929, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader('USREC', 'fred', start_date, end_date)
+nber = fetch_fred('USREC', start_date, end_date)
 
 fig, ax = plt.subplots()
 
@@ -635,9 +641,8 @@ end_date = datetime.datetime(2022, 12, 31)
 start_date_graph = datetime.datetime(1977, 1, 1)
 end_date_graph = datetime.datetime(2023, 12, 31)
 
-nber = web.DataReader('USREC', 'fred', start_date, end_date)
-consumer_confidence = web.DataReader('UMCSENT', 'fred', 
-                                start_date, end_date)
+nber = fetch_fred('USREC', start_date, end_date)
+consumer_confidence = fetch_fred('UMCSENT', start_date, end_date)
 
 fig, ax = plt.subplots()
 ax.plot(consumer_confidence, **g_params, 
@@ -654,8 +659,7 @@ ax.set_ylabel('consumer sentiment index')
 
 # Plot CPI on another y-axis
 ax_t = ax.twinx()
-inflation = web.DataReader('CPILFESL', 'fred', 
-                start_date, end_date).pct_change(12)*100
+inflation = fetch_fred('CPILFESL', start_date, end_date).pct_change(12)*100
 
 # Add CPI on the legend without drawing the line again
 ax_t.plot(2020, 0, **g_params, linestyle='-', 
@@ -713,10 +717,8 @@ tags: [hide-input]
 start_date = datetime.datetime(1919, 1, 1)
 end_date = datetime.datetime(2022, 12, 31)
 
-nber = web.DataReader('USREC', 'fred', 
-                    start_date, end_date)
-industrial_output = web.DataReader('INDPRO', 'fred', 
-                    start_date, end_date).pct_change(12)*100
+nber = fetch_fred('USREC', start_date, end_date)
+industrial_output = fetch_fred('INDPRO', start_date, end_date).pct_change(12)*100
 
 fig, ax = plt.subplots()
 ax.plot(industrial_output, **g_params, 
