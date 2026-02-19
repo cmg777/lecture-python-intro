@@ -1,0 +1,2018 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Income and Wealth Inequality &#8212; A First Course in Quantitative Economics with Python</title>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"argmax": "arg\\,max", "argmin": "arg\\,min"}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'inequality';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/inequality.html" />
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Introduction to Supply and Demand" href="intro_supply_demand.html" />
+    <link rel="prev" title="5. Inflation During French Revolution" href="french_rev.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Income and Wealth Inequality"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Income and Wealth Inequality" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/inequality.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+<!-- Override QuantEcon theme colors -->
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=inequality>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+                        <div class="qe-page__toc-header">
+                            On this page
+                        </div>
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">6.1. Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#some-history">6.1.1. Some history</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#measurement">6.1.2. Measurement</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lorenz-curve">6.2. The Lorenz curve</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">6.2.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lorenz-curves-of-simulated-data">6.2.2. Lorenz curves of simulated data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lorenz-curves-for-us-data">6.2.3. Lorenz curves for US data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-gini-coefficient">6.3. The Gini coefficient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.3.1. Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-of-simulated-data">6.3.2. Gini coefficient of simulated data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-for-income-us-data">6.3.3. Gini coefficient for income (US data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-for-wealth">6.3.4. Gini coefficient for wealth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-country-comparisons-of-income-inequality">6.3.5. Cross-country comparisons of income inequality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini-coefficient-and-gdp-per-capita-over-time">6.3.6. Gini Coefficient and GDP per capita (over time)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#top-shares">6.4. Top shares</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4.1. Definition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">6.5. Exercises</a></li>
+</ul>
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                    </div>
+
+                    <!-- Authors section -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Aug 01, 2025
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/inequality.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/1ed3d4f5" class="changelog-hash">1ed3d4f5</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">6 months ago</span>
+                                <span class="changelog-message">MAINT: update anaconda=2025.06 and python=3.13 (#637)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/6cc6c4bc" class="changelog-hash">6cc6c4bc</a>
+                                
+                                <span class="changelog-author">Humphrey Yang</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[FIX] Fix string warnings (#566)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/2ecd0ff2" class="changelog-hash">2ecd0ff2</a>
+                                
+                                <span class="changelog-author">Longye Tian</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[ar1_processes] to [eigen_II] [heavy_tails][inequality]Example and spelling (#538)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/2b7dd969" class="changelog-hash">2b7dd969</a>
+                                
+                                <span class="changelog-author">Longye Tian</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[inequality] Update exercise 3 (#498)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/359caaaa" class="changelog-hash">359caaaa</a>
+                                
+                                <span class="changelog-author">John Stachurski</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">misc</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/bce65a81" class="changelog-hash">bce65a81</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">[inequality] Review of lecture and incorporate updates (#384)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b51ec912" class="changelog-hash">b51ec912</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">MAINT: Upgrade anaconda and README (#398)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/255cad1a" class="changelog-hash">255cad1a</a>
+                                
+                                <span class="changelog-author">hengchengzhang</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">Remove some white spaces</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/23a9913a" class="changelog-hash">23a9913a</a>
+                                
+                                <span class="changelog-author">hengchengzhang</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">Minor fixes</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/792c47e9" class="changelog-hash">792c47e9</a>
+                                
+                                <span class="changelog-author">hengchengzhang</span>
+                                <span class="changelog-time">2 years ago</span>
+                                <span class="changelog-message">Minor updates</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="income-and-wealth-inequality">
+<h1><span class="section-number">6. </span>Income and Wealth Inequality<a class="headerlink" href="#income-and-wealth-inequality" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><span class="section-number">6.1. </span>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In the lecture <a class="reference internal" href="long_run_growth.html"><span class="doc">Long-Run Growth</span></a> we studied how GDP per capita has changed
+for certain countries and regions.</p>
+<p>Per capita GDP is important because it gives us an idea of average income for
+households in a given country.</p>
+<p>However, when we study income and wealth, averages are only part of the story.</p>
+<div class="proof example admonition" id="ie_ex_av">
+<p class="admonition-title"><span class="caption-number">Example 6.1 </span></p>
+<section class="example-content" id="proof-content">
+<p>For example, imagine two societies, each with one million people, where</p>
+<ul class="simple">
+<li><p>in the first society, the yearly income of one man is $100,000,000 and the income of the
+others are zero</p></li>
+<li><p>in the second society, the yearly income of everyone is $100</p></li>
+</ul>
+<p>These countries have the same income per capita (average income is $100) but the lives of the people will be very different (e.g., almost everyone in the first society is
+starving, even though one person is fabulously rich).</p>
+</section>
+</div><p>The example above suggests that we should go beyond simple averages when we study income and wealth.</p>
+<p>This leads us to the topic of economic inequality, which examines how income and wealth (and other quantities) are distributed across a population.</p>
+<p>In this lecture we study inequality, beginning with measures of inequality and
+then applying them to wealth and income data from the US and other countries.</p>
+<section id="some-history">
+<h3><span class="section-number">6.1.1. </span>Some history<a class="headerlink" href="#some-history" title="Link to this heading">#</a></h3>
+<p>Many historians argue that inequality played a role in the fall of the Roman Republic (see, e.g., <span id="id1">[<a class="reference internal" href="zreferences.html#id7" title="Malcolm Levitt. Why did ancient states collapse?: the dysfunctional state. Why Did Ancient States Collapse?, pages 1–56, 2019.">Levitt, 2019</a>]</span>).</p>
+<p>Following the defeat of Carthage and the invasion of Spain, money flowed into
+Rome from across the empire, greatly enriched those in power.</p>
+<p>Meanwhile, ordinary citizens were taken from their farms to fight for long
+periods, diminishing their wealth.</p>
+<p>The resulting growth in inequality was a driving factor behind political turmoil that shook the foundations of the republic.</p>
+<p>Eventually, the Roman Republic gave way to a series of dictatorships, starting with <a class="reference external" href="https://en.wikipedia.org/wiki/Augustus">Octavian</a> (Augustus) in 27 BCE.</p>
+<p>This history tells us that inequality matters, in the sense that it can drive major world events.</p>
+<p>There are other reasons that inequality might matter, such as how it affects
+human welfare.</p>
+<p>With this motivation, let us start to think about what inequality is and how we
+can quantify and analyze it.</p>
+</section>
+<section id="measurement">
+<h3><span class="section-number">6.1.2. </span>Measurement<a class="headerlink" href="#measurement" title="Link to this heading">#</a></h3>
+<p>In politics and popular media, the word “inequality” is often used quite loosely, without any firm definition.</p>
+<p>To bring a scientific perspective to the topic of inequality we must start with careful definitions.</p>
+<p>Hence we begin by discussing ways that inequality can be measured in economic research.</p>
+<p>We will need to install the following packages</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>wbgapi<span class="w"> </span>plotly
+</pre></div>
+</div>
+</div>
+<details class="admonition hide below-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: wbgapi in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (1.0.12)
+Requirement already satisfied: plotly in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (6.0.1)
+Requirement already satisfied: requests in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from wbgapi) (2.31.0)
+Requirement already satisfied: PyYAML in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from wbgapi) (6.0.3)
+Requirement already satisfied: tabulate in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from wbgapi) (0.9.0)
+Requirement already satisfied: narwhals&gt;=1.15.1 in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from plotly) (1.31.0)
+Requirement already satisfied: packaging in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from plotly) (23.2)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from requests-&gt;wbgapi) (3.6)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2.1.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/carlosmendez/miniforge3/lib/python3.10/site-packages (from requests-&gt;wbgapi) (2026.1.4)
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>We will also use the following imports.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">wbgapi</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rd</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">wbgapi</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wb</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;wbgapi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-lorenz-curve">
+<h2><span class="section-number">6.2. </span>The Lorenz curve<a class="headerlink" href="#the-lorenz-curve" title="Link to this heading">#</a></h2>
+<p>One popular measure of inequality is the Lorenz curve.</p>
+<p>In this section we define the Lorenz curve and examine its properties.</p>
+<section id="definition">
+<h3><span class="section-number">6.2.1. </span>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>The Lorenz curve takes a sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> and produces a curve <span class="math notranslate nohighlight">\(L\)</span>.</p>
+<p>We suppose that the sample has been sorted from smallest to largest.</p>
+<p>To aid our interpretation, suppose that we are measuring wealth</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_1\)</span> is the wealth of the poorest member of the population, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_n\)</span> is the wealth of the richest member of the population.</p></li>
+</ul>
+<p>The curve <span class="math notranslate nohighlight">\(L\)</span> is just a function <span class="math notranslate nohighlight">\(y = L(x)\)</span> that we can plot and interpret.</p>
+<p>To create it we first generate data points <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>  according to</p>
+<div class="proof definition admonition" id="define-lorenz">
+<p class="admonition-title"><span class="caption-number">Definition 6.1 </span></p>
+<section class="definition-content" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+x_i = \frac{i}{n},
+\qquad
+y_i = \frac{\sum_{j \leq i} w_j}{\sum_{j \leq n} w_j},
+\qquad i = 1, \ldots, n
+\]</div>
+</section>
+</div><p>Now the Lorenz curve <span class="math notranslate nohighlight">\(L\)</span> is formed from these data points using interpolation.</p>
+<p>If we use a line plot in <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, the interpolation will be done for us.</p>
+<p>The meaning of the statement <span class="math notranslate nohighlight">\(y = L(x)\)</span> is that the lowest <span class="math notranslate nohighlight">\((100
+\times x)\)</span>% of people have <span class="math notranslate nohighlight">\((100 \times y)\)</span>% of all wealth.</p>
+<ul class="simple">
+<li><p>if <span class="math notranslate nohighlight">\(x=0.5\)</span> and <span class="math notranslate nohighlight">\(y=0.1\)</span>, then the bottom 50% of the population
+owns 10% of the wealth.</p></li>
+</ul>
+<p>In the discussion above we focused on wealth but the same ideas apply to
+income, consumption, etc.</p>
+</section>
+<section id="lorenz-curves-of-simulated-data">
+<h3><span class="section-number">6.2.2. </span>Lorenz curves of simulated data<a class="headerlink" href="#lorenz-curves-of-simulated-data" title="Link to this heading">#</a></h3>
+<p>Let’s look at some examples and try to build understanding.</p>
+<p>First let us construct a <code class="docutils literal notranslate"><span class="pre">lorenz_curve</span></code> function that we can
+use in our simulations below.</p>
+<p>It is useful to construct a function that translates an array of
+income or wealth data into the cumulative share
+of individuals (or households) and the cumulative share of income (or wealth).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lorenz_curve</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates the Lorenz Curve, a graphical representation of</span>
+<span class="sd">    the distribution of income or wealth.</span>
+
+<span class="sd">    It returns the cumulative share of people (x-axis) and</span>
+<span class="sd">    the cumulative share of income earned.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : array_like(float or int, ndim=1)</span>
+<span class="sd">        Array of income/wealth for each individual.</span>
+<span class="sd">        Unordered or ordered is fine.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cum_people : array_like(float, ndim=1)</span>
+<span class="sd">        Cumulative share of people for each person index (i/n)</span>
+<span class="sd">    cum_income : array_like(float, ndim=1)</span>
+<span class="sd">        Cumulative share of income for each person index</span>
+
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] https://en.wikipedia.org/wiki/Lorenz_curve</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; a_val, n = 3, 10_000</span>
+<span class="sd">    &gt;&gt;&gt; y = np.random.pareto(a_val, size=n)</span>
+<span class="sd">    &gt;&gt;&gt; f_vals, l_vals = lorenz(y)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">cum_people</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">cum_income</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">cum_people</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="n">cum_income</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">s</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">cum_people</span><span class="p">,</span> <span class="n">cum_income</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the next figure, we generate <span class="math notranslate nohighlight">\(n=2000\)</span> draws from a lognormal
+distribution and treat these draws as our population.</p>
+<p>The straight 45-degree line (<span class="math notranslate nohighlight">\(x=L(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>) corresponds to perfect equality.</p>
+<p>The log-normal draws produce a less equal distribution.</p>
+<p>For example, if we imagine these draws as being observations of wealth across
+a sample of households, then the dashed lines show that the bottom 80% of
+households own just over 40% of total wealth.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lognormal sample&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;equality&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">([</span><span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.43</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hlines</span><span class="p">([</span><span class="mf">0.43</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="lorenz-curves-for-us-data">
+<h3><span class="section-number">6.2.3. </span>Lorenz curves for US data<a class="headerlink" href="#lorenz-curves-for-us-data" title="Link to this heading">#</a></h3>
+<p>Next let’s look at US data for both income and wealth.</p>
+<p id="data-survey-consumer-finance">The following code block imports a subset of the dataset <code class="docutils literal notranslate"><span class="pre">SCF_plus</span></code> for 2016,
+which is derived from the <a class="reference external" href="https://en.wikipedia.org/wiki/Survey_of_Consumer_Finances">Survey of Consumer Finances</a> (SCF).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/QuantEcon/high_dim_data/raw/main/SCF_plus/SCF_plus_mini.csv&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df_income_wealth</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next code block uses data stored in dataframe <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code> to generate the Lorenz curves.</p>
+<p>(The code is somewhat complex because we need to adjust the data according to
+population weights supplied by the SCF.)</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_income_wealth</span> 
+
+<span class="n">varlist</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">,</span>    <span class="c1"># net wealth </span>
+           <span class="s1">&#39;t_income&#39;</span><span class="p">,</span>    <span class="c1"># total income</span>
+           <span class="s1">&#39;l_income&#39;</span><span class="p">]</span>    <span class="c1"># labor income</span>
+
+<span class="n">years</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Create lists to store Lorenz data</span>
+
+<span class="n">F_vals</span><span class="p">,</span> <span class="n">L_vals</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">varlist</span><span class="p">:</span>
+    <span class="c1"># create lists to store Lorenz curve data</span>
+    <span class="n">f_vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">l_vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+
+        <span class="c1"># Repeat the observations according to their weights</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="p">))</span> 
+        <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">][</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        
+        <span class="c1"># Shuffle the sequence to improve the plot</span>
+        <span class="n">rd</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>    
+               
+        <span class="c1"># calculate and store Lorenz curve data</span>
+        <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">f_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_val</span><span class="p">)</span>
+        <span class="n">l_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_val</span><span class="p">)</span>
+        
+    <span class="n">F_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_vals</span><span class="p">)</span>
+    <span class="n">L_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_vals</span><span class="p">)</span>
+
+<span class="n">f_vals_nw</span><span class="p">,</span> <span class="n">f_vals_ti</span><span class="p">,</span> <span class="n">f_vals_li</span> <span class="o">=</span> <span class="n">F_vals</span>
+<span class="n">l_vals_nw</span><span class="p">,</span> <span class="n">l_vals_ti</span><span class="p">,</span> <span class="n">l_vals_li</span> <span class="o">=</span> <span class="n">L_vals</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Now we plot Lorenz curves for net wealth, total income and labor income in the
+US in 2016.</p>
+<p>Total income is the sum of households’ all income sources, including labor income but excluding capital gains.</p>
+<p>(All income measures are pre-tax.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">l_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;net wealth&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_ti</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">l_vals_ti</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;total income&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">l_vals_li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;labor income&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">f_vals_nw</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;equality&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of income/wealth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>One key finding from this figure is that wealth inequality is more extreme than income inequality.</p>
+</section>
+</section>
+<section id="the-gini-coefficient">
+<h2><span class="section-number">6.3. </span>The Gini coefficient<a class="headerlink" href="#the-gini-coefficient" title="Link to this heading">#</a></h2>
+<p>The Lorenz curve provides a visual representation of inequality in a distribution.</p>
+<p>Another way to study income and wealth inequality is via the Gini coefficient.</p>
+<p>In this section we discuss the Gini coefficient and its relationship to the Lorenz curve.</p>
+<section id="id2">
+<h3><span class="section-number">6.3.1. </span>Definition<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
+<p>The Gini coefficient is defined for the sample above as</p>
+<div class="proof definition admonition" id="define-gini">
+<p class="admonition-title"><span class="caption-number">Definition 6.2 </span></p>
+<section class="definition-content" id="proof-content">
+<div class="math notranslate nohighlight">
+\[
+G :=
+\frac{\sum_{i=1}^n \sum_{j = 1}^n |w_j - w_i|}
+     {2n\sum_{i=1}^n w_i}.
+\]</div>
+</section>
+</div><p>The Gini coefficient is closely related to the Lorenz curve.</p>
+<p>In fact, it can be shown that its value is twice the area between the line of
+equality and the Lorenz curve (e.g., the shaded area in <code class="xref std std-numref docutils literal notranslate"><span class="pre">lorenz_gini</span></code>).</p>
+<p>The idea is that <span class="math notranslate nohighlight">\(G=0\)</span> indicates complete equality, while <span class="math notranslate nohighlight">\(G=1\)</span> indicates complete inequality.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lognormal sample&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;equality&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$G = 2 \times$ shaded area&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth (%)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact the Gini coefficient can also be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+G = \frac{A}{A+B}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the area between the 45-degree line of
+perfect equality and the Lorenz curve, while <span class="math notranslate nohighlight">\(B\)</span> is the area below the Lorenze curve – see <code class="xref std std-numref docutils literal notranslate"><span class="pre">lorenz_gini2</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lognormal sample&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;equality&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">f_vals</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">f_vals</span><span class="p">,</span> <span class="n">l_vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">f_vals</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.06</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;share of households&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;share of wealth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>The World in Data project has a <a class="reference external" href="https://ourworldindata.org/what-is-the-gini-coefficient">graphical exploration of the Lorenz curve and the Gini coefficient</a></p>
+</div>
+</section>
+<section id="gini-coefficient-of-simulated-data">
+<h3><span class="section-number">6.3.2. </span>Gini coefficient of simulated data<a class="headerlink" href="#gini-coefficient-of-simulated-data" title="Link to this heading">#</a></h3>
+<p>Let’s examine the Gini coefficient in some simulations.</p>
+<p>The code below computes the Gini coefficient from a sample.</p>
+<div class="cell docutils container" id="code-gini-coefficient">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gini_coefficient</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the Gini inequality index</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y : array_like(float)</span>
+<span class="sd">        Array of income/wealth for each individual.</span>
+<span class="sd">        Ordered or unordered is fine</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Gini index: float</span>
+<span class="sd">        The gini index describing the inequality of the array of income/wealth</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    https://en.wikipedia.org/wiki/Gini_coefficient</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">i_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">i_sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">i_sum</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can compute the Gini coefficients for five different populations.</p>
+<p>Each of these populations is generated by drawing from a
+lognormal distribution with parameters <span class="math notranslate nohighlight">\(\mu\)</span> (mean) and <span class="math notranslate nohighlight">\(\sigma\)</span> (standard deviation).</p>
+<p>To create the five populations, we vary <span class="math notranslate nohighlight">\(\sigma\)</span> over a grid of length <span class="math notranslate nohighlight">\(5\)</span>
+between <span class="math notranslate nohighlight">\(0.2\)</span> and <span class="math notranslate nohighlight">\(4\)</span>.</p>
+<p>In each case we set <span class="math notranslate nohighlight">\(\mu = - \sigma^2 / 2\)</span>.</p>
+<p>This implies that the mean of the distribution does not change with <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>You can check this by looking up the expression for the mean of a lognormal
+distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2_000</span>
+
+<span class="n">ginis</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">σ</span> <span class="ow">in</span> <span class="n">σ_vals</span><span class="p">:</span>
+    <span class="n">μ</span> <span class="o">=</span> <span class="o">-</span><span class="n">σ</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">ginis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s build a function that returns a figure (so that we can use it later in the lecture).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_inequality_measures</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">legend</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">legend</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
+                                  <span class="n">ginis</span><span class="p">,</span> 
+                                  <span class="s1">&#39;simulated&#39;</span><span class="p">,</span> 
+                                  <span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> 
+                                  <span class="s1">&#39;Gini coefficients&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The plots show that inequality rises with <span class="math notranslate nohighlight">\(\sigma\)</span>, according to the Gini
+coefficient.</p>
+</section>
+<section id="gini-coefficient-for-income-us-data">
+<h3><span class="section-number">6.3.3. </span>Gini coefficient for income (US data)<a class="headerlink" href="#gini-coefficient-for-income-us-data" title="Link to this heading">#</a></h3>
+<p>Let’s look at the Gini coefficient for the distribution of income in the US.</p>
+<p>We will get pre-computed Gini coefficients (based on income) from the World Bank using the <a class="reference external" href="https://blogs.worldbank.org/opendata/introducing-wbgapi-new-python-package-accessing-world-bank-data">wbgapi</a>.</p>
+<p>Let’s use the <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> package we imported earlier to search the World Bank data for Gini to find the Series ID.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;gini&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now know the series ID is <code class="docutils literal notranslate"><span class="pre">SI.POV.GINI</span></code>.</p>
+<p>(Another way to find the series ID is to use the <a class="reference external" href="https://data.worldbank.org">World Bank data portal</a> and then use <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> to fetch the data.)</p>
+<p>To get a quick overview, let’s histogram Gini coefficients across all countries and all years in the World Bank dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch gini data for all countries</span>
+<span class="n">gini_all</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s2">&quot;SI.POV.GINI&quot;</span><span class="p">)</span>
+<span class="c1"># remove &#39;YR&#39; in index and convert to integer</span>
+<span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> 
+
+<span class="c1"># Create a long series with a multi-index of the data to get global min and max values</span>
+<span class="n">gini_all</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s1">&#39;economy&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Build a histogram</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Gini coefficient&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;frequency&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see in <code class="xref std std-numref docutils literal notranslate"><span class="pre">gini_histogram</span></code> that across 50 years of data and all countries the measure varies between 20 and 65.</p>
+<p>Let us fetch the data <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> for the USA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s2">&quot;SI.POV.GINI&quot;</span><span class="p">,</span> <span class="s2">&quot;USA&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1"># remove &#39;YR&#39; in index and convert to integer</span>
+<span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(This package often returns data with year information contained in the columns. This is not always convenient for simple plotting with pandas so it can be useful to transpose the results before plotting.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">T</span>           <span class="c1"># Obtain years as rows</span>
+<span class="n">data_usa</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">]</span>  <span class="c1"># pd.Series of US data</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us take a look at the data for the US.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">data_usa</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">data_usa</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">data_usa</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Gini coefficient (income)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen in <code class="xref std std-numref docutils literal notranslate"><span class="pre">gini_usa1</span></code>, the income Gini
+trended upward from 1980 to 2020 and then dropped following at the start of the COVID pandemic.</p>
+</section>
+<section id="gini-coefficient-for-wealth">
+<span id="compare-income-wealth-usa-over-time"></span><h3><span class="section-number">6.3.4. </span>Gini coefficient for wealth<a class="headerlink" href="#gini-coefficient-for-wealth" title="Link to this heading">#</a></h3>
+<p>In the previous section we looked at the Gini coefficient for income, focusing on using US data.</p>
+<p>Now let’s look at the Gini coefficient for the distribution of wealth.</p>
+<p>We will use US data from the <a class="reference internal" href="#data-survey-consumer-finance"><span class="std std-ref">Survey of Consumer Finances</span></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><a class="reference external" href="https://github.com/QuantEcon/lecture-python-intro/tree/main/lectures/_static/lecture_specific/inequality/data.ipynb">This notebook</a> can be used to compute this information over the full dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_url</span> <span class="o">=</span> <span class="s1">&#39;https://github.com/QuantEcon/lecture-python-intro/raw/main/lectures/_static/lecture_specific/inequality/usa-gini-nwealth-tincome-lincome.csv&#39;</span>
+<span class="n">ginis</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">ginis</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s plot the Gini coefficients for net wealth.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">ginis</span><span class="p">[</span><span class="s2">&quot;n_wealth&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Gini coefficient&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The time series for the wealth Gini exhibits a U-shape, falling until the early
+1980s and then increasing rapidly.</p>
+<p>One possibility is that this change is mainly driven by technology.</p>
+<p>However, we will see below that not all advanced economies experienced similar growth of inequality.</p>
+</section>
+<section id="cross-country-comparisons-of-income-inequality">
+<h3><span class="section-number">6.3.5. </span>Cross-country comparisons of income inequality<a class="headerlink" href="#cross-country-comparisons-of-income-inequality" title="Link to this heading">#</a></h3>
+<p>Earlier in this lecture we used <code class="docutils literal notranslate"><span class="pre">wbgapi</span></code> to get Gini data across many countries
+and saved it in a variable called <code class="docutils literal notranslate"><span class="pre">gini_all</span></code></p>
+<p>In this section we will use this data to compare several advanced economies, and
+to look at the evolution in their respective income Ginis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">gini_all</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are 167 countries represented in this dataset.</p>
+<p>Let us compare three advanced economies: the US, the UK, and Norway</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;NOR&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Gini coefficient&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that Norway has a shorter time series.</p>
+<p>Let us take a closer look at the underlying data and see if we can rectify this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;NOR&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The data for Norway in this dataset goes back to 1979 but there are gaps in the time series and matplotlib is not showing those data points.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">.ffill()</span></code> method to copy and bring forward the last known value in a series to fill in these gaps</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;NOR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;NOR&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ffill</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span><span class="s1">&#39;GBR&#39;</span><span class="p">,</span> <span class="s1">&#39;NOR&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Gini coefficient&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>From this plot we can observe that the US has a higher Gini coefficient (i.e.
+higher income inequality) when compared to the UK and Norway.</p>
+<p>Norway has the lowest Gini coefficient over the three economies and, moreover,
+the Gini coefficient shows no upward trend.</p>
+</section>
+<section id="gini-coefficient-and-gdp-per-capita-over-time">
+<h3><span class="section-number">6.3.6. </span>Gini Coefficient and GDP per capita (over time)<a class="headerlink" href="#gini-coefficient-and-gdp-per-capita-over-time" title="Link to this heading">#</a></h3>
+<p>We can also look at how the Gini coefficient compares with GDP per capita (over time).</p>
+<p>Let’s take another look at the US, Norway, and the UK.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="s1">&#39;NOR&#39;</span><span class="p">,</span> <span class="s1">&#39;GBR&#39;</span><span class="p">]</span>
+<span class="n">gdppc</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="s2">&quot;NY.GDP.PCAP.KD&quot;</span><span class="p">,</span> <span class="n">countries</span><span class="p">)</span>
+<span class="c1"># remove &#39;YR&#39; in index and convert to integer</span>
+<span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;YR&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> 
+<span class="n">gdppc</span> <span class="o">=</span> <span class="n">gdppc</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can rearrange the data so that we can plot GDP per capita and the Gini coefficient across years</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">countries</span><span class="p">]</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gini&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can get the GDP per capita data into a shape that can be merged with <code class="docutils literal notranslate"><span class="pre">plot_data</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pgdppc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">gdppc</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<span class="n">pgdppc</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]</span>
+<span class="n">pgdppc</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;gdppc&#39;</span><span class="p">]</span>
+<span class="n">plot_data</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pgdppc</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use Plotly to build a plot with GDP per capita on the y-axis and the Gini coefficient on the x-axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">min_year</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">max_year</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The time series for all three countries start and stop in different years.</p>
+<p>We will add a year mask to the data to improve clarity in the chart including the different end years associated with each country’s time series.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1979</span><span class="p">,</span> <span class="mi">1986</span><span class="p">,</span> <span class="mi">1991</span><span class="p">,</span> <span class="mi">1995</span><span class="p">,</span> <span class="mi">2000</span><span class="p">,</span> <span class="mi">2020</span><span class="p">,</span> <span class="mi">2021</span><span class="p">,</span> <span class="mi">2022</span><span class="p">]</span> <span class="o">+</span> \
+         <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">min_year</span><span class="p">,</span><span class="n">max_year</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plot_data</span><span class="o">.</span><span class="n">year</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">labels</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container" id="fig-plotly-gini-gdppc-years">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">plot_data</span><span class="p">,</span> 
+              <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;gini&quot;</span><span class="p">,</span> 
+              <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;gdppc&quot;</span><span class="p">,</span> 
+              <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+              <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> 
+              <span class="n">height</span> <span class="o">=</span> <span class="mi">800</span><span class="p">,</span>
+              <span class="n">labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;gini&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gini coefficient&quot;</span><span class="p">,</span> <span class="s2">&quot;gdppc&quot;</span> <span class="p">:</span> <span class="s2">&quot;GDP per capita&quot;</span><span class="p">}</span>
+             <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">textposition</span><span class="o">=</span><span class="s2">&quot;bottom right&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This plot shows that all three Western economies’ GDP per capita has grown over
+time with some fluctuations in the Gini coefficient.</p>
+<p>From the early 80’s the United Kingdom and the US economies both saw increases
+in income inequality.</p>
+<p>Interestingly, since the year 2000, the United Kingdom saw a decline in income inequality while
+the US exhibits persistent but stable levels around a Gini coefficient of 40.</p>
+</section>
+</section>
+<section id="top-shares">
+<h2><span class="section-number">6.4. </span>Top shares<a class="headerlink" href="#top-shares" title="Link to this heading">#</a></h2>
+<p>Another popular measure of inequality is the top shares.</p>
+<p>In this section we show how to compute top shares.</p>
+<section id="id3">
+<h3><span class="section-number">6.4.1. </span>Definition<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>As before, suppose that the sample <span class="math notranslate nohighlight">\(w_1, \ldots, w_n\)</span> has been sorted from smallest to largest.</p>
+<p>Given the Lorenz curve <span class="math notranslate nohighlight">\(y = L(x)\)</span> defined above, the top <span class="math notranslate nohighlight">\(100 \times p \%\)</span>
+share is defined as</p>
+<div class="proof definition admonition" id="top-shares">
+<p class="admonition-title"><span class="caption-number">Definition 6.3 </span></p>
+<section class="definition-content" id="proof-content">
+<div class="math notranslate nohighlight" id="equation-topshares">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-topshares" title="Link to this equation">#</a></span>\[
+T(p) = 1 - L (1-p) 
+    \approx \frac{\sum_{j\geq i} w_j}{ \sum_{j \leq n} w_j}, \quad i = \lfloor n (1-p)\rfloor
+\]</div>
+</section>
+</div><p>Here <span class="math notranslate nohighlight">\(\lfloor \cdot \rfloor\)</span> is the floor function, which rounds any
+number down to the integer less than or equal to that number.</p>
+<p>The following code uses the data from dataframe <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code> to generate another dataframe <code class="docutils literal notranslate"><span class="pre">df_topshares</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">df_topshares</span></code> stores the top 10 percent shares for the total income, the labor income and net wealth from 1950 to 2016 in US.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="admonition hide above-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># transfer the survey weights from absolute into relative values</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">df_income_wealth</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;weights&#39;</span><span class="p">]]</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;r_weights&#39;</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df3</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">])</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weights&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+
+<span class="c1"># create weighted nw, ti, li</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;n_wealth&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;t_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+<span class="n">df4</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;l_income&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;r_weights&#39;</span><span class="p">]</span>
+
+<span class="c1"># extract two top 10% groups by net wealth and total income.</span>
+<span class="n">df6</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">&#39;nw_groups&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Top 10%&#39;</span><span class="p">]</span>
+<span class="n">df7</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="n">df4</span><span class="p">[</span><span class="s1">&#39;ti_groups&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Top 10%&#39;</span><span class="p">]</span>
+
+<span class="c1"># calculate the sum of weighted top 10% by net wealth,</span>
+<span class="c1">#   total income and labor income.</span>
+<span class="n">df5</span> <span class="o">=</span> <span class="n">df4</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df8</span> <span class="o">=</span> <span class="n">df6</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df9</span> <span class="o">=</span> <span class="n">df7</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth_top10&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df8</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income_top10&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df9</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income_top10&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df9</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span>
+
+<span class="c1"># calculate the top 10% shares of the three variables.</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_n_wealth&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_t_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_t_income&#39;</span><span class="p">]</span>
+<span class="n">df5</span><span class="p">[</span><span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income_top10&#39;</span><span class="p">]</span> <span class="o">/</span> \
+    <span class="n">df5</span><span class="p">[</span><span class="s1">&#39;weighted_l_income&#39;</span><span class="p">]</span>
+
+<span class="c1"># we only need these vars for top 10 percent shares</span>
+<span class="n">df_topshares</span> <span class="o">=</span> <span class="n">df5</span><span class="p">[[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_n_wealth&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;topshare_t_income&#39;</span><span class="p">,</span> <span class="s1">&#39;topshare_l_income&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>Then let’s plot the top shares.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_l_income&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;labor income&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_t_income&quot;</span><span class="p">],</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;total income&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;top $10\%$ share&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises">
+<h2><span class="section-number">6.5. </span>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<div class="exercise admonition" id="inequality_ex1">
+
+<p class="admonition-title"><span class="caption-number">Exercise 6.1 </span></p>
+<section id="exercise-content">
+<p>Using simulation, compute the top 10 percent shares for the collection of
+lognormal distributions associated with the random variables <span class="math notranslate nohighlight">\(w_\sigma =
+\exp(\mu + \sigma Z)\)</span>, where <span class="math notranslate nohighlight">\(Z \sim N(0, 1)\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> varies over a
+finite grid between <span class="math notranslate nohighlight">\(0.2\)</span> and <span class="math notranslate nohighlight">\(4\)</span>.</p>
+<p>As <span class="math notranslate nohighlight">\(\sigma\)</span> increases, so does the variance of <span class="math notranslate nohighlight">\(w_\sigma\)</span>.</p>
+<p>To focus on volatility, adjust <span class="math notranslate nohighlight">\(\mu\)</span> at each step to maintain the equality
+<span class="math notranslate nohighlight">\(\mu=-\sigma^2/2\)</span>.</p>
+<p>For each <span class="math notranslate nohighlight">\(\sigma\)</span>, generate 2,000 independent draws of <span class="math notranslate nohighlight">\(w_\sigma\)</span> and
+calculate the Lorenz curve and Gini coefficient.</p>
+<p>Confirm that higher variance
+generates more dispersion in the sample, and hence greater inequality.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="inequality-solution-5">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#inequality_ex1"> Exercise 6.1</a></p>
+<section id="solution-content">
+<p>Here is one solution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_top_share</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    
+    <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">s</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2_000</span>
+
+<span class="n">topshares</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ginis</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">f_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">l_vals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">σ</span> <span class="ow">in</span> <span class="n">σ_vals</span><span class="p">:</span>
+    <span class="n">μ</span> <span class="o">=</span> <span class="o">-</span><span class="n">σ</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ</span> <span class="o">+</span> <span class="n">σ</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span> <span class="o">=</span> <span class="n">lorenz_curve</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">f_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_val</span><span class="p">)</span>
+    <span class="n">l_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">l_val</span><span class="p">)</span>
+    <span class="n">ginis</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">topshares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calculate_top_share</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
+                                  <span class="n">topshares</span><span class="p">,</span> 
+                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
+                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
+                                  <span class="s2">&quot;top $10\%$ share&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;Top shares of simulated data&quot;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_inequality_measures</span><span class="p">(</span><span class="n">σ_vals</span><span class="p">,</span> 
+                                  <span class="n">ginis</span><span class="p">,</span> 
+                                  <span class="s2">&quot;simulated data&quot;</span><span class="p">,</span> 
+                                  <span class="s2">&quot;$\sigma$&quot;</span><span class="p">,</span> 
+                                  <span class="s2">&quot;gini coefficient&quot;</span><span class="p">,</span>
+                                  <span class="s2">&quot;Gini coefficients of simulated data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;equality&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f_vals</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">l_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$\sigma$ = </span><span class="si">{</span><span class="n">σ_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Lorenz curves for simulated data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="inequality_ex2">
+
+<p class="admonition-title"><span class="caption-number">Exercise 6.2 </span></p>
+<section id="exercise-content">
+<p>According to the definition of the top shares <a class="reference internal" href="#equation-topshares">(6.1)</a> we can also calculate the top percentile shares using the Lorenz curve.</p>
+<p>Compute the top shares of US net wealth using the corresponding Lorenz curves data: <code class="docutils literal notranslate"><span class="pre">f_vals_nw,</span> <span class="pre">l_vals_nw</span></code> and linear interpolation.</p>
+<p>Plot the top shares generated from Lorenz curve and the top shares approximated from data together.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="inequality-solution-7">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#inequality_ex2"> Exercise 6.2</a></p>
+<section id="solution-content">
+<p>Here is one solution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lorenz2top</span><span class="p">(</span><span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">top_shares_nw</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f_vals_nw</span><span class="p">,</span> <span class="n">l_vals_nw</span><span class="p">):</span>
+    <span class="n">top_shares_nw</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lorenz2top</span><span class="p">(</span><span class="n">f_val</span><span class="p">,</span> <span class="n">l_val</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">df_topshares</span><span class="p">[</span><span class="s2">&quot;topshare_n_wealth&quot;</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>\
+   <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth-approx&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">top_shares_nw</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;net wealth-lorenz&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;top $10\%$ share&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;US top shares: approximation vs Lorenz&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="exercise admonition" id="inequality_ex3">
+
+<p class="admonition-title"><span class="caption-number">Exercise 6.3 </span></p>
+<section id="exercise-content">
+<p>The <a class="reference internal" href="#code-gini-coefficient"><span class="std std-ref">code to compute the Gini coefficient is listed in the lecture above</span></a>.</p>
+<p>This code uses loops to calculate the coefficient based on income or wealth data.</p>
+<p>This function can be re-written using vectorization which will greatly improve the computational efficiency when using <code class="docutils literal notranslate"><span class="pre">python</span></code>.</p>
+<p>Re-write the function <code class="docutils literal notranslate"><span class="pre">gini_coefficient</span></code> using <code class="docutils literal notranslate"><span class="pre">numpy</span></code> and vectorized code.</p>
+<p>You can compare the output of this new function with the one above, and note the speed differences.</p>
+</section>
+</div>
+<div class="solution dropdown admonition" id="inequality-solution-9">
+
+<p class="admonition-title">Solution to<a class="reference internal" href="#inequality_ex3"> Exercise 6.3</a></p>
+<section id="solution-content">
+<p>Let’s take a look at some raw data for the US that is stored in <code class="docutils literal notranslate"><span class="pre">df_income_wealth</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will focus on wealth variable <code class="docutils literal notranslate"><span class="pre">n_wealth</span></code> to compute a Gini coefficient for the year 2016.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">df_income_wealth</span><span class="p">[</span><span class="n">df_income_wealth</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2016</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can first compute the Gini coefficient using the function defined in the lecture above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">n_wealth</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can write a vectorized version using <code class="docutils literal notranslate"><span class="pre">numpy</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gini</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">y_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+    <span class="n">g_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_1</span> <span class="o">-</span> <span class="n">y_2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">g_sum</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gini</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">n_wealth</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s simulate five populations by drawing from a lognormal distribution as before</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">2_000</span>
+<span class="n">σ_vals</span> <span class="o">=</span> <span class="n">σ_vals</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">μ_vals</span> <span class="o">=</span> <span class="o">-</span><span class="n">σ_vals</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">μ_vals</span> <span class="o">+</span> <span class="n">σ_vals</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can compute the Gini coefficient for these five populations using the vectorized function, the computation time is shown below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">gini_coefficients</span> <span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+     <span class="n">gini_coefficients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gini</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This shows the vectorized function is much faster.
+This gives us the Gini coefficients for these five households.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gini_coefficients</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   6. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   8. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   9. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   10. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   11. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   12. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   14. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   15. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   17. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   18. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   19. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   20. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   21. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   22. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   23. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   24. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   25. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   26. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   27. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   28. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   29. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   30. Some Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   31. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   32. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   33. AR(1) Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   34. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   35. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   36. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   37. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   38. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   39. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   40. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   41. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   42. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   43. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   44. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   45. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   46. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   47. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   48. References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="status.html">
+   49. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/inequality.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/inequality.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/inequality.ipynb" data-branch=main>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/inequality.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "inequality";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/inequality.ipynb";
+                const branch = "main"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>

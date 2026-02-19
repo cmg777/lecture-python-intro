@@ -1,0 +1,1460 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>49. Execution Statistics &#8212; A First Course in Quantitative Economics with Python</title>
+    
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <script src="https://unpkg.com/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.1/dist/tippy-bundle.umd.js" integrity="sha384-bq5PNg/ZcfW7KMvFSmhjqCQJ/VFnec+6sZkctn/4ZLeubkn7U58Le4zFFSn3dhUu" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" integrity="sha384-qEqAs1VsN9WH2myXDbiP2wGGIttL9bMRZBKCl54ZnzpDlVqbYANP9vMaoT/wvQcf" crossorigin="anonymous"></script>
+    
+        <script>
+            MathJax = {
+            loader: {load: ['[tex]/boldsymbol', '[tex]/textmacros']},
+            tex: {
+                packages: {'[+]': ['boldsymbol', 'textmacros']},
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                processEscapes: true,
+                macros: {
+                    "argmax" : "arg\\,max",
+                    "argmin" : "arg\\,min",
+                    "col"    : "col",
+                    "Span"   :  "span",
+                    "epsilon": "\\varepsilon",
+                    "EE": "\\mathbb{E}",
+                    "PP": "\\mathbb{P}",
+                    "RR": "\\mathbb{R}",
+                    "NN": "\\mathbb{N}",
+                    "ZZ": "\\mathbb{Z}",
+                    "aA": "\\mathcal{A}",
+                    "bB": "\\mathcal{B}",
+                    "cC": "\\mathcal{C}",
+                    "dD": "\\mathcal{D}",
+                    "eE": "\\mathcal{E}",
+                    "fF": "\\mathcal{F}",
+                    "gG": "\\mathcal{G}",
+                    "hH": "\\mathcal{H}",
+                }
+            },
+            svg: {
+                fontCache: 'global',
+                scale: 0.92,
+                displayAlign: "center",
+            },
+            };
+        </script>
+    
+    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" href="_static/styles/quantecon-book-theme.css?digest=22b71a9b445b7b2b6a277c0a48ea72bf6e7c90d9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/exercise.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/scripts/quantecon-book-theme.js?digest=65b86b9423025043228643fcfb616ce846cb91c1"></script>
+    <script src="_static/scripts/jquery.js?v=5d32c60e"></script>
+    <script src="_static/scripts/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-QDS1YRJNGM"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-QDS1YRJNGM');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'status';</script>
+    <link rel="canonical" href="https://intro.quantecon.org/status.html" />
+    <link rel="icon" href="_static/lectures-favicon.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="48. References" href="zreferences.html" />
+
+<!-- Normal Meta Tags -->
+<meta name="author" context="Thomas J. Sargent &amp; John Stachurski" />
+<meta name="keywords" content="Python, QuantEcon, Quantitative Economics, Economics, Sloan, Alfred P. Sloan Foundation, Tom J. Sargent, John Stachurski" />
+<meta name="description" content=This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski. />
+
+<!-- Twitter tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@quantecon" />
+<meta name="twitter:title" content="Execution Statistics"/>
+<meta name="twitter:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski.">
+<meta name="twitter:creator" content="@quantecon">
+<meta name="twitter:image" content="https://assets.quantecon.org/img/qe-twitter-logo.png">
+
+<!-- Opengraph tags -->
+<meta property="og:title" content="Execution Statistics" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://intro.quantecon.org/status.html" />
+<meta property="og:image" content="https://assets.quantecon.org/img/qe-og-logo.png" />
+<meta property="og:description" content="This website presents introductory lectures on computational economics, designed and written by Thomas J. Sargent and John Stachurski." />
+<meta property="og:site_name" content="A First Course in Quantitative Economics with Python" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+<body>
+
+<!-- Override QuantEcon theme colors -->
+
+    <span id="top"></span>
+
+    <div class="qe-wrapper">
+
+        <div class="qe-main">
+
+            <div class="qe-page" id=status>
+
+                <div class="qe-page__toc">
+
+                    <div class="inner">
+
+                        
+
+
+                        <nav id="bd-toc-nav" class="qe-page__toc-nav">
+                            
+                            <p class="logo">
+                                
+                                    
+                                    <a href=https://quantecon.org><img src="_static/qe-logo.png" class="logo logo-img" alt="logo"></a>
+                                    
+                                    <a href=https://quantecon.org><img src="_static/quantecon-logo-transparent.png" class="dark-logo-img" alt="logo"></a>
+                                    
+                                    
+                                
+                            </p>
+
+                            <p class="powered">Powered by <a href="https://jupyterbook.org/v1/">Jupyter Book</a></p>
+
+                        </nav>
+
+                        <div class="qe-page__toc-footer">
+                            
+                            
+                            <p><a href="#top"><strong>Back to top</strong></a></p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="qe-page__header">
+
+                    <div class="qe-page__header-copy">
+
+                        <p class="qe-page__header-heading"><a href="intro.html">A First Course in Quantitative Economics with Python</a></p>
+
+                    </div>
+
+                    <!-- Authors section -->
+                        <p class="qe-page__header-authors" font-size="18">
+                            
+                                
+                                    <a href="http://www.tomsargent.com/" target="_blank"><span>Thomas J. Sargent</span></a>
+                                
+                            
+                                
+                                    and <a href="https://johnstachurski.net/" target="_blank"><span>John Stachurski</span></a>
+                                
+                            
+                        </p>
+
+                    <!-- Last modified / Changelog dropdown -->
+                        <button class="qe-page__header-changed" id="changelog-toggle" aria-expanded="false">
+                            Last changed: Mar 18, 2024
+                            <span class="changelog-icon">▼</span>
+                        </button>
+
+                    <!-- Changelog dropdown content -->
+                    <div class="qe-page__header-changelog" id="changelog-content" aria-hidden="true">
+                        <h4>Changelog (<a href="https://github.com/QuantEcon/lecture-python-intro/commits/main/lectures/status.md">full history</a>)</h4>
+                        <ul class="changelog-list">
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/b51ec912" class="changelog-hash">b51ec912</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">MAINT: Upgrade anaconda and README (#398)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/440a83d2" class="changelog-hash">440a83d2</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">Revert "MAINT: Upgrade anaconda and README (#396)" (#397)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/a84f8c31" class="changelog-hash">a84f8c31</a>
+                                
+                                <span class="changelog-author">Matt McKay</span>
+                                <span class="changelog-time">1 year ago</span>
+                                <span class="changelog-message">MAINT: Upgrade anaconda and README (#396)</span>
+                            </li>
+                            
+                            <li class="changelog-entry">
+                                
+                                <a href="https://github.com/QuantEcon/lecture-python-intro/commit/2c42e29a" class="changelog-hash">2c42e29a</a>
+                                
+                                <span class="changelog-author">mmcky</span>
+                                <span class="changelog-time">3 years ago</span>
+                                <span class="changelog-message">Initial setup of GitHub actions + Lecture Transfer</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                </div> <!-- .page__header -->
+
+
+
+                
+                <main class="qe-page__content" role="main">
+                    
+                    <div>
+                        
+  <section class="tex2jax_ignore mathjax_ignore" id="execution-statistics">
+<h1><span class="section-number">49. </span>Execution Statistics<a class="headerlink" href="#execution-statistics" title="Link to this heading">#</a></h1>
+<p>This table contains the latest execution statistics.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Document</p></th>
+<th class="head"><p>Modified</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Run Time (s)</p></th>
+<th class="head"><p>Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="ar1_processes.html"><span class="doc">ar1_processes</span></a></p></td>
+<td><p>2026-02-19 20:01</p></td>
+<td><p>cache</p></td>
+<td><p>51.86</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="business_cycle.html"><span class="doc">business_cycle</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>18.53</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="cagan_adaptive.html"><span class="doc">cagan_adaptive</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>2.93</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="cagan_ree.html"><span class="doc">cagan_ree</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>3.7</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="cobweb.html"><span class="doc">cobweb</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>3.03</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="commod_price.html"><span class="doc">commod_price</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>4.18</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="complex_and_trig.html"><span class="doc">complex_and_trig</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>2.75</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="cons_smooth.html"><span class="doc">cons_smooth</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>3.99</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="eigen_I.html"><span class="doc">eigen_I</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>5.63</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="eigen_II.html"><span class="doc">eigen_II</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>8.51</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="equalizing_difference.html"><span class="doc">equalizing_difference</span></a></p></td>
+<td><p>2026-02-19 20:02</p></td>
+<td><p>cache</p></td>
+<td><p>2.74</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="french_rev.html"><span class="doc">french_rev</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>9.89</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="geom_series.html"><span class="doc">geom_series</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>3.86</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="greek_square.html"><span class="doc">greek_square</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>2.56</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="heavy_tails.html"><span class="doc">heavy_tails</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>4.94</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="inequality.html"><span class="doc">inequality</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>4.93</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="inflation_history.html"><span class="doc">inflation_history</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>9.53</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="input_output.html"><span class="doc">input_output</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>10.33</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="intro.html"><span class="doc">intro</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>1.1</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="intro_supply_demand.html"><span class="doc">intro_supply_demand</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>3.4</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="laffer_adaptive.html"><span class="doc">laffer_adaptive</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>3.11</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lake_model.html"><span class="doc">lake_model</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>3.19</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="linear_equations.html"><span class="doc">linear_equations</span></a></p></td>
+<td><p>2026-02-19 20:03</p></td>
+<td><p>cache</p></td>
+<td><p>2.37</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lln_clt.html"><span class="doc">lln_clt</span></a></p></td>
+<td><p>2026-02-19 20:06</p></td>
+<td><p>cache</p></td>
+<td><p>166.6</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="long_run_growth.html"><span class="doc">long_run_growth</span></a></p></td>
+<td><p>2026-02-19 20:06</p></td>
+<td><p>cache</p></td>
+<td><p>9.27</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="lp_intro.html"><span class="doc">lp_intro</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>7.91</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="markov_chains_I.html"><span class="doc">markov_chains_I</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>22.24</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="markov_chains_II.html"><span class="doc">markov_chains_II</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>7.29</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="mle.html"><span class="doc">mle</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>17.47</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="money_inflation.html"><span class="doc">money_inflation</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>2.85</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="money_inflation_nonlinear.html"><span class="doc">money_inflation_nonlinear</span></a></p></td>
+<td><p>2026-02-19 20:07</p></td>
+<td><p>cache</p></td>
+<td><p>3.03</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="monte_carlo.html"><span class="doc">monte_carlo</span></a></p></td>
+<td><p>2026-02-19 20:11</p></td>
+<td><p>cache</p></td>
+<td><p>239.79</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="networks.html"><span class="doc">networks</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>10.52</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="olg.html"><span class="doc">olg</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>3.37</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="prob_dist.html"><span class="doc">prob_dist</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>5.29</p></td>
+<td><p><abbr title="CellExecutionError">❌</abbr></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="pv.html"><span class="doc">pv</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>2.0</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="scalar_dynam.html"><span class="doc">scalar_dynam</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>3.35</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="schelling.html"><span class="doc">schelling</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>11.74</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="short_path.html"><span class="doc">short_path</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>1.24</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="simple_linear_regression.html"><span class="doc">simple_linear_regression</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>5.6</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="solow.html"><span class="doc">solow</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>4.8</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="#"><span class="doc">status</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>9.17</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="supply_demand_heterogeneity.html"><span class="doc">supply_demand_heterogeneity</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>1.54</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="supply_demand_multiple_goods.html"><span class="doc">supply_demand_multiple_goods</span></a></p></td>
+<td><p>2026-02-19 20:12</p></td>
+<td><p>cache</p></td>
+<td><p>2.39</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="tax_smooth.html"><span class="doc">tax_smooth</span></a></p></td>
+<td><p>2026-02-19 20:13</p></td>
+<td><p>cache</p></td>
+<td><p>3.78</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="time_series_with_matrices.html"><span class="doc">time_series_with_matrices</span></a></p></td>
+<td><p>2026-02-19 20:13</p></td>
+<td><p>cache</p></td>
+<td><p>3.01</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="troubleshooting.html"><span class="doc">troubleshooting</span></a></p></td>
+<td><p>2026-02-19 11:03</p></td>
+<td><p>cache</p></td>
+<td><p>1.1</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="xref doc reference internal" href="unpleasant.html"><span class="doc">unpleasant</span></a></p></td>
+<td><p>2026-02-19 20:13</p></td>
+<td><p>cache</p></td>
+<td><p>2.11</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="xref doc reference internal" href="zreferences.html"><span class="doc">zreferences</span></a></p></td>
+<td><p>2026-02-19 11:03</p></td>
+<td><p>cache</p></td>
+<td><p>1.1</p></td>
+<td><p>✅</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p id="status-machine-details">These lectures are built on <code class="docutils literal notranslate"><span class="pre">linux</span></code> instances through <code class="docutils literal notranslate"><span class="pre">github</span> <span class="pre">actions</span></code>.</p>
+<p>These lectures are using the following python version</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.10.13
+</pre></div>
+</div>
+</div>
+</div>
+<p>and the following package versions</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>conda<span class="w"> </span>list
+</pre></div>
+</div>
+</div>
+<details class="admonition hide below-input">
+<summary aria-label="Toggle hidden content">
+<p class="collapsed admonition-title">Show output</p>
+<p class="expanded admonition-title">Hide code cell output</p>
+</summary>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># packages in environment at /Users/carlosmendez/miniforge3:
+#
+# Name                    Version                   Build  Channel
+absl-py                   2.4.0                    pypi_0    pypi
+affine                    2.4.0                    pypi_0    pypi
+altair                    5.5.0                    pypi_0    pypi
+anyio                     4.12.1             pyhcf101f3_0    conda-forge
+appnope                   0.1.4              pyhd8ed1ab_1    conda-forge
+archspec                  0.2.2              pyhd8ed1ab_0    conda-forge
+argon2-cffi               25.1.0             pyhd8ed1ab_0    conda-forge
+argon2-cffi-bindings      25.1.0          py310hd2d5e8d_2    conda-forge
+arrow                     1.4.0              pyhcf101f3_0    conda-forge
+asttokens                 3.0.1              pyhd8ed1ab_0    conda-forge
+async-lru                 2.1.0              pyhcf101f3_0    conda-forge
+attrs                     25.3.0                   pypi_0    pypi
+babel                     2.17.0             pyhd8ed1ab_0    conda-forge
+beautifulsoup4            4.13.3                   pypi_0    pypi
+bleach                    6.3.0              pyhcf101f3_0    conda-forge
+bleach-with-css           6.3.0                h5f6438b_0    conda-forge
+blinker                   1.9.0                    pypi_0    pypi
+boltons                   23.1.1             pyhd8ed1ab_0    conda-forge
+branca                    0.8.1                    pypi_0    pypi
+brotli-python             1.1.0           py310h9e9d8ca_1    conda-forge
+bzip2                     1.0.8                h10d778d_5    conda-forge
+c-ares                    1.24.0               h10d778d_0    conda-forge
+ca-certificates           2026.1.4             hbd8a1cb_0    conda-forge
+cached-property           1.5.2                hd8ed1ab_1    conda-forge
+cached_property           1.5.2              pyha770c72_1    conda-forge
+cachetools                5.5.2                    pypi_0    pypi
+certifi                   2026.1.4           pyhd8ed1ab_0    conda-forge
+cffi                      1.16.0          py310hdca579f_0    conda-forge
+charset-normalizer        3.3.2              pyhd8ed1ab_0    conda-forge
+click                     8.1.8                    pypi_0    pypi
+click-plugins             1.1.1                    pypi_0    pypi
+cligj                     0.7.2                    pypi_0    pypi
+colorama                  0.4.6              pyhd8ed1ab_0    conda-forge
+comm                      0.2.3              pyhe01879c_0    conda-forge
+conda                     23.11.0         py310h2ec42d9_1    conda-forge
+conda-libmamba-solver     23.12.0            pyhd8ed1ab_0    conda-forge
+conda-package-handling    2.2.0              pyh38be061_0    conda-forge
+conda-package-streaming   0.9.0              pyhd8ed1ab_0    conda-forge
+contextily                1.6.2                    pypi_0    pypi
+contourpy                 1.3.1                    pypi_0    pypi
+curl-cffi                 0.13.0                   pypi_0    pypi
+cycler                    0.12.1                   pypi_0    pypi
+debugpy                   1.8.5           py310he0a0c5d_0    conda-forge
+decorator                 5.2.1              pyhd8ed1ab_0    conda-forge
+defusedxml                0.7.1              pyhd8ed1ab_0    conda-forge
+distro                    1.8.0              pyhd8ed1ab_0    conda-forge
+entrypoints               0.4                pyhd8ed1ab_1    conda-forge
+esda                      2.7.0                    pypi_0    pypi
+exceptiongroup            1.3.1              pyhd8ed1ab_0    conda-forge
+executing                 2.2.1              pyhd8ed1ab_0    conda-forge
+fiona                     1.10.1                   pypi_0    pypi
+fmt                       10.1.1               he51d815_1    conda-forge
+folium                    0.15.0                   pypi_0    pypi
+fonttools                 4.56.0                   pypi_0    pypi
+formulaic                 1.2.1                    pypi_0    pypi
+fqdn                      1.5.1              pyhd8ed1ab_1    conda-forge
+frozendict                2.4.7                    pypi_0    pypi
+geographiclib             2.0                      pypi_0    pypi
+geopandas                 0.14.1                   pypi_0    pypi
+geopy                     2.4.1                    pypi_0    pypi
+giddy                     2.3.6                    pypi_0    pypi
+gitdb                     4.0.12                   pypi_0    pypi
+gitpython                 3.1.44                   pypi_0    pypi
+greenlet                  3.3.1                    pypi_0    pypi
+h11                       0.16.0             pyhcf101f3_1    conda-forge
+h2                        4.3.0              pyhcf101f3_0    conda-forge
+hpack                     4.1.0              pyhd8ed1ab_0    conda-forge
+httpcore                  1.0.9              pyh29332c3_0    conda-forge
+httpx                     0.28.1             pyhd8ed1ab_0    conda-forge
+hyperframe                6.1.0              pyhd8ed1ab_0    conda-forge
+icu                       73.2                 hf5e326d_0    conda-forge
+idna                      3.6                pyhd8ed1ab_0    conda-forge
+immutabledict             4.3.1                    pypi_0    pypi
+importlib-metadata        7.2.1                    pypi_0    pypi
+importlib_resources       6.5.2              pyhd8ed1ab_0    conda-forge
+interface-meta            1.3.0                    pypi_0    pypi
+ipykernel                 6.29.5             pyh57ce528_0    conda-forge
+ipython                   8.37.0             pyh8f84b5b_0    conda-forge
+isoduration               20.11.0            pyhd8ed1ab_1    conda-forge
+jedi                      0.19.2             pyhd8ed1ab_1    conda-forge
+jinja2                    3.1.6              pyhcf101f3_1    conda-forge
+joblib                    1.4.2                    pypi_0    pypi
+json5                     0.13.0             pyhd8ed1ab_0    conda-forge
+jsonpatch                 1.33               pyhd8ed1ab_0    conda-forge
+jsonpointer               2.4             py310h2ec42d9_3    conda-forge
+jsonschema                4.23.0                   pypi_0    pypi
+jsonschema-specifications 2024.10.1                pypi_0    pypi
+jsonschema-with-format-nongpl 4.26.0               hcf101f3_0    conda-forge
+jupyter-lsp               2.3.0              pyhcf101f3_0    conda-forge
+jupyter_client            7.4.9              pyhd8ed1ab_0    conda-forge
+jupyter_core              5.9.1              pyhc90fa1f_0    conda-forge
+jupyter_events            0.12.0             pyh29332c3_0    conda-forge
+jupyter_server            2.17.0             pyhcf101f3_0    conda-forge
+jupyter_server_terminals  0.5.4              pyhcf101f3_0    conda-forge
+jupyterlab                4.5.3              pyhd8ed1ab_0    conda-forge
+jupyterlab_pygments       0.3.0              pyhd8ed1ab_2    conda-forge
+jupyterlab_server         2.28.0             pyhcf101f3_0    conda-forge
+jupytext                  1.19.1                   pypi_0    pypi
+kiwisolver                1.4.8                    pypi_0    pypi
+krb5                      1.21.2               hb884880_0    conda-forge
+lark                      1.3.1              pyhd8ed1ab_0    conda-forge
+libarchive                3.7.2                hd35d340_1    conda-forge
+libcurl                   8.5.0                h726d00d_0    conda-forge
+libcxx                    16.0.6               hd57cbcb_0    conda-forge
+libedit                   3.1.20191231         h0678c8f_2    conda-forge
+libev                     4.33                 h10d778d_2    conda-forge
+libffi                    3.4.2                h0d85af4_5    conda-forge
+libiconv                  1.17                 hd75f5a5_2    conda-forge
+libmamba                  1.5.5                hb976dfd_0    conda-forge
+libmambapy                1.5.5           py310hd068509_0    conda-forge
+libnghttp2                1.58.0               h64cf6d3_1    conda-forge
+libpysal                  4.12.1                   pypi_0    pypi
+libsodium                 1.0.18               hbcb3906_1    conda-forge
+libsolv                   0.7.27               hf4d7fad_0    conda-forge
+libsqlite                 3.44.2               h92b6c6a_0    conda-forge
+libssh2                   1.11.0               hd019ec5_0    conda-forge
+libxml2                   2.12.3               hc0ae0f7_0    conda-forge
+libzlib                   1.2.13               h8a1eda9_5    conda-forge
+linearmodels              7.0                      pypi_0    pypi
+llvmlite                  0.44.0                   pypi_0    pypi
+lxml                      6.0.2                    pypi_0    pypi
+lz4-c                     1.9.4                hf0c8a7f_0    conda-forge
+lzo                       2.10              haf1e3a3_1000    conda-forge
+mamba                     1.5.5           py310h6bde348_0    conda-forge
+mapclassify               2.8.1                    pypi_0    pypi
+markdown-it-py            3.0.0                    pypi_0    pypi
+markupsafe                3.0.2                    pypi_0    pypi
+matplotlib                3.8.2                    pypi_0    pypi
+matplotlib-inline         0.2.1              pyhd8ed1ab_0    conda-forge
+mdit-py-plugins           0.5.0                    pypi_0    pypi
+mdurl                     0.1.2                    pypi_0    pypi
+menuinst                  2.0.1           py310h2ec42d9_0    conda-forge
+mercantile                1.2.1                    pypi_0    pypi
+mistune                   3.2.0              pyhcf101f3_0    conda-forge
+mpmath                    1.3.0                    pypi_0    pypi
+multitasking              0.0.12                   pypi_0    pypi
+mypy-extensions           1.1.0                    pypi_0    pypi
+narwhals                  1.31.0                   pypi_0    pypi
+nbclient                  0.10.4             pyhd8ed1ab_0    conda-forge
+nbconvert-core            7.16.6             pyhcf101f3_1    conda-forge
+nbformat                  5.10.4             pyhd8ed1ab_1    conda-forge
+ncurses                   6.4                  h93d8f39_2    conda-forge
+nest-asyncio              1.6.0              pyhd8ed1ab_1    conda-forge
+networkx                  3.4.2                    pypi_0    pypi
+notebook                  7.5.3              pyhcf101f3_0    conda-forge
+notebook-shim             0.2.4              pyhd8ed1ab_1    conda-forge
+numba                     0.61.0                   pypi_0    pypi
+numpy                     1.26.4                   pypi_0    pypi
+openssl                   3.6.1                hb6871ef_1    conda-forge
+ortools                   9.15.6755                pypi_0    pypi
+overrides                 7.7.0              pyhd8ed1ab_1    conda-forge
+packaging                 23.2               pyhd8ed1ab_0    conda-forge
+pandas                    2.3.3                    pypi_0    pypi
+pandas-datareader         0.10.0                   pypi_0    pypi
+pandocfilters             1.5.0              pyhd8ed1ab_0    conda-forge
+parso                     0.8.5              pyhcf101f3_0    conda-forge
+patsy                     1.0.1                    pypi_0    pypi
+peewee                    3.19.0                   pypi_0    pypi
+pexpect                   4.9.0              pyhd8ed1ab_1    conda-forge
+pickleshare               0.7.5           pyhd8ed1ab_1004    conda-forge
+pillow                    10.4.0                   pypi_0    pypi
+pip                       23.3.2             pyhd8ed1ab_0    conda-forge
+platformdirs              4.1.0              pyhd8ed1ab_0    conda-forge
+playwright                1.57.0                   pypi_0    pypi
+plotly                    6.0.1                    pypi_0    pypi
+pluggy                    1.3.0              pyhd8ed1ab_0    conda-forge
+prometheus_client         0.24.1             pyhd8ed1ab_0    conda-forge
+prompt-toolkit            3.0.52             pyha770c72_0    conda-forge
+protobuf                  6.33.5                   pypi_0    pypi
+psutil                    7.2.1           py310h8bcfd8d_0    conda-forge
+ptyprocess                0.7.0              pyhd8ed1ab_1    conda-forge
+pure_eval                 0.2.3              pyhd8ed1ab_1    conda-forge
+pyarrow                   19.0.1                   pypi_0    pypi
+pybind11-abi              4                    hd8ed1ab_3    conda-forge
+pycosat                   0.6.6           py310h6729b98_0    conda-forge
+pycparser                 2.21               pyhd8ed1ab_0    conda-forge
+pydeck                    0.9.1                    pypi_0    pypi
+pyee                      13.0.0                   pypi_0    pypi
+pygments                  2.19.1                   pypi_0    pypi
+pyhdfe                    0.2.0                    pypi_0    pypi
+pyobjc-core               11.0            py310hae5a141_0    conda-forge
+pyobjc-framework-cocoa    11.0            py310hae5a141_0    conda-forge
+pyogrio                   0.10.0                   pypi_0    pypi
+pyparsing                 3.2.1                    pypi_0    pypi
+pypdf                     5.7.0                    pypi_0    pypi
+pyproj                    3.7.1                    pypi_0    pypi
+pysocks                   1.7.1              pyha2e5f31_6    conda-forge
+python                    3.10.13         h00d2728_0_cpython    conda-forge
+python-dateutil           2.9.0.post0        pyhe01879c_2    conda-forge
+python-fastjsonschema     2.21.2             pyhe01879c_0    conda-forge
+python-json-logger        2.0.7              pyhd8ed1ab_0    conda-forge
+python-tzdata             2025.3             pyhd8ed1ab_0    conda-forge
+python_abi                3.10                    4_cp310    conda-forge
+pytz                      2025.1                   pypi_0    pypi
+pyyaml                    6.0.3           py310hd951482_0    conda-forge
+pyzmq                     24.0.1          py310hf615a82_1    conda-forge
+quantecon                 0.8.0                    pypi_0    pypi
+quantecon-book-networks   1.5                      pypi_0    pypi
+rasterio                  1.4.3                    pypi_0    pypi
+readline                  8.2                  h9e318b2_1    conda-forge
+referencing               0.36.2                   pypi_0    pypi
+reproc                    14.2.4.post0         h10d778d_1    conda-forge
+reproc-cpp                14.2.4.post0         h93d8f39_1    conda-forge
+requests                  2.31.0             pyhd8ed1ab_0    conda-forge
+rfc3339-validator         0.1.4              pyhd8ed1ab_1    conda-forge
+rfc3986-validator         0.1.1              pyh9f0ad1d_0    conda-forge
+rfc3987-syntax            1.1.0              pyhe01879c_1    conda-forge
+rich                      13.9.4                   pypi_0    pypi
+rpds-py                   0.23.1                   pypi_0    pypi
+ruamel.yaml               0.18.5          py310hb372a2b_0    conda-forge
+ruamel.yaml.clib          0.2.7           py310h6729b98_2    conda-forge
+scikit-learn              1.6.1                    pypi_0    pypi
+scipy                     1.15.2                   pypi_0    pypi
+seaborn                   0.13.2                   pypi_0    pypi
+send2trash                2.1.0              pyh5552912_0    conda-forge
+setuptools                68.2.2             pyhd8ed1ab_0    conda-forge
+shapely                   2.0.7                    pypi_0    pypi
+six                       1.17.0             pyhe01879c_1    conda-forge
+smmap                     5.0.2                    pypi_0    pypi
+sniffio                   1.3.1              pyhd8ed1ab_2    conda-forge
+soupsieve                 2.6                      pypi_0    pypi
+splot                     1.1.7                    pypi_0    pypi
+spreg                     1.8.2                    pypi_0    pypi
+stack_data                0.6.3              pyhd8ed1ab_1    conda-forge
+statsmodels               0.14.4                   pypi_0    pypi
+streamlit                 1.31.0                   pypi_0    pypi
+streamlit-folium          0.15.0                   pypi_0    pypi
+sympy                     1.13.3                   pypi_0    pypi
+tabulate                  0.9.0                    pypi_0    pypi
+tenacity                  8.5.0                    pypi_0    pypi
+terminado                 0.18.1             pyhc90fa1f_1    conda-forge
+threadpoolctl             3.6.0                    pypi_0    pypi
+tinycss2                  1.4.0                    pypi_0    pypi
+tk                        8.6.13               h1abcd95_1    conda-forge
+toml                      0.10.2                   pypi_0    pypi
+tomli                     2.4.0              pyhcf101f3_0    conda-forge
+tornado                   6.4.2                    pypi_0    pypi
+
+traitlets                 5.14.3             pyhd8ed1ab_1    conda-forge
+truststore                0.8.0              pyhd8ed1ab_0    conda-forge
+typing-extensions         4.12.2                   pypi_0    pypi
+typing_extensions         4.15.0             pyhcf101f3_0    conda-forge
+typing_utils              0.1.0              pyhd8ed1ab_1    conda-forge
+tzdata                    2025.1                   pypi_0    pypi
+tzlocal                   5.3.1                    pypi_0    pypi
+uri-template              1.3.0              pyhd8ed1ab_1    conda-forge
+urllib3                   2.1.0              pyhd8ed1ab_0    conda-forge
+validators                0.34.0                   pypi_0    pypi
+vega-datasets             0.9.0                    pypi_0    pypi
+watchdog                  6.0.0                    pypi_0    pypi
+wbgapi                    1.0.12                   pypi_0    pypi
+wcwidth                   0.2.14             pyhd8ed1ab_0    conda-forge
+webcolors                 25.10.0            pyhd8ed1ab_0    conda-forge
+webencodings              0.5.1              pyhd8ed1ab_3    conda-forge
+websocket-client          1.9.0              pyhd8ed1ab_0    conda-forge
+websockets                16.0                     pypi_0    pypi
+wheel                     0.42.0             pyhd8ed1ab_0    conda-forge
+wrapt                     2.0.1                    pypi_0    pypi
+xgboost                   3.1.3                    pypi_0    pypi
+xlrd                      2.0.2                    pypi_0    pypi
+xyzservices               2025.1.0                 pypi_0    pypi
+xz                        5.2.6                h775f41a_0    conda-forge
+yaml                      0.2.5                h4132b18_3    conda-forge
+yaml-cpp                  0.8.0                he965462_0    conda-forge
+yfinance                  1.2.0                    pypi_0    pypi
+zeromq                    4.3.5                hde137ed_4    conda-forge
+zipp                      3.21.0                   pypi_0    pypi
+zstandard                 0.22.0          py310hd88f66e_0    conda-forge
+zstd                      1.5.5                h829000d_0    conda-forge
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                    </div>
+                    
+                </main> <!-- .page__content -->
+                
+
+
+                <footer class="qe-page__footer">
+
+                    <p><a href="https://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/80x15.png"></a></p>
+
+                    <p>Creative Commons License &ndash; This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International.</p>
+
+                    <p>A theme by <a href="https://quantecon.org">QuantEcon</a></p>
+
+                </footer> <!-- .page__footer -->
+
+            </div> <!-- .page -->
+
+            
+
+            
+            <div class="qe-sidebar bd-sidebar inactive" id="site-navigation">
+
+                <div class="qe-sidebar__header">
+
+
+                    Contents
+
+                </div>
+
+                <nav class="qe-sidebar__nav" id="qe-sidebar-nav" aria-label="Main navigation">
+                    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Introduction
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   1. About These Lectures
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Economic Data
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="long_run_growth.html">
+   2. Long-Run Growth
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="business_cycle.html">
+   3. Business Cycles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inflation_history.html">
+   4. Price Level Histories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="french_rev.html">
+   5. Inflation During French Revolution
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="inequality.html">
+   6. Income and Wealth Inequality
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Foundations
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro_supply_demand.html">
+   7. Introduction to Supply and Demand
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_equations.html">
+   8. Linear Equations and Matrix Algebra
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_and_trig.html">
+   9. Complex Numbers and Trigonometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geom_series.html">
+   10. Geometric Series for Elementary Economics
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Finite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pv.html">
+   11. Present Values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cons_smooth.html">
+   12. Consumption Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tax_smooth.html">
+   13. Tax Smoothing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="equalizing_difference.html">
+   14. Equalizing Difference Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_ree.html">
+   15. A Monetarist Theory of Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cagan_adaptive.html">
+   16. Monetarist Theory of Price Levels with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Linear Dynamics: Infinite Horizons
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_I.html">
+   17. Eigenvalues and Eigenvectors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="greek_square.html">
+   18. Computing Square Roots
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Probability and Distributions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob_dist.html">
+   19. Distributions and Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lln_clt.html">
+   20. LLN and CLT
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="monte_carlo.html">
+   21. Monte Carlo and Option Pricing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="heavy_tails.html">
+   22. Heavy-Tailed Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schelling.html">
+   23. Racial Segregation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Nonlinear Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scalar_dynam.html">
+   24. Dynamics in One Dimension
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="solow.html">
+   25. The Solow-Swan Growth Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cobweb.html">
+   26. The Cobweb Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="olg.html">
+   27. The Overlapping Generations Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="commod_price.html">
+   28. Commodity Prices
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Monetary-Fiscal Policy Interactions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation.html">
+   29. Money Financed Government Deficits and Price Levels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="unpleasant.html">
+   30. Some Unpleasant Monetarist Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="money_inflation_nonlinear.html">
+   31. Inflation Rate Laffer Curves
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="laffer_adaptive.html">
+   32. Laffer Curves  with Adaptive Expectations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Stochastic Dynamics
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ar1_processes.html">
+   33. AR(1) Processes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_I.html">
+   34. Markov Chains: Basic Concepts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markov_chains_II.html">
+   35. Markov Chains: Irreducibility and Ergodicity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="time_series_with_matrices.html">
+   36. Univariate Time Series with Matrix Algebra
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Optimization
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lp_intro.html">
+   37. Linear Programming
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="short_path.html">
+   38. Shortest Paths
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Modeling in Higher Dimensions
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigen_II.html">
+   39. The Perron-Frobenius Theorem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="input_output.html">
+   40. Input-Output Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lake_model.html">
+   41. A Lake Model of Employment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="networks.html">
+   42. Networks
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Markets and Competitive Equilibrium
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_multiple_goods.html">
+   43. Supply and Demand with Many Goods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supply_demand_heterogeneity.html">
+   44. Market Equilibrium with Heterogeneity
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estimation
+ </span>
+</p>
+<ul class="nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="simple_linear_regression.html">
+   45. Simple Linear Regression Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mle.html">
+   46. Maximum Likelihood Estimation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other
+ </span>
+</p>
+<ul class="current nav bd-sidenav nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="troubleshooting.html">
+   47. Troubleshooting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zreferences.html">
+   48. References
+  </a>
+ </li>
+ <li class="toctree-l1 current active active">
+  <a class="current reference internal" href="#">
+   49. Execution Statistics
+  </a>
+ </li>
+</ul>
+
+                </nav>
+
+                <div class="qe-sidebar__footer">
+
+                </div>
+
+            </div> <!-- .sidebar -->
+            
+        </div> <!-- .main -->
+
+        <div class="qe-toolbar">
+
+            <div class="qe-toolbar__inner">
+
+                <ul class="qe-toolbar__main">
+                    <li data-tippy-content="Table of Contents" class="btn__sidebar"><i data-feather="menu"></i></li>
+                    <li data-tippy-content="Home"><a href="intro.html"><i data-feather="home"></i></a></li>
+                    <li class="btn__qelogo"><a href="https://quantecon.org" title=""><span class="show-for-sr">QuantEcon</span></a></li>
+                </ul>
+
+                <ul class="qe-toolbar__links">
+                    <li class="btn__search">
+                        <form action="search.html" method="get">
+                            <input type="search" class="form-control" name="q" id="search-input" placeholder="Search..." aria-label="Search..." autocomplete="off" accesskey="k">
+                            <i data-feather="search" id="search-icon"></i>
+                        </form>
+                    </li>
+                    <li data-tippy-content="Fullscreen" class="btn__fullscreen"><i data-feather="maximize"></i></li>
+                    <li data-tippy-content="Increase font size" class="btn__plus"><i data-feather="plus-circle"></i></li>
+                    <li data-tippy-content="Decrease font size" class="btn__minus"><i data-feather="minus-circle"></i></li>
+                    <li data-tippy-content="Change contrast" class="btn__contrast"><i data-feather="sunset"></i></li>
+                    <li class="settings-button" id="settingsButton"><div data-tippy-content="Launch Notebook"><i data-feather="play-circle"></i></div></li>
+                        <li data-tippy-content="Download PDF" onClick="window.print()"><i data-feather="file"></i></li>
+                    <!--
+                    # Enable if looking for link to specific document hosted on GitHub
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro/blob/main/lectures/status.md" download><i data-feather="github"></i></a></li>
+                    -->
+                    <li data-tippy-content="View Source"><a target="_blank" href="https://github.com/QuantEcon/lecture-python-intro" download><i data-feather="github"></i></a></li>
+                </ul>
+
+            </div>
+
+        </div> <!-- .toolbar -->
+        <div id="downloadPDFModal" style="display: none;">
+            <ul class="pdf-options" style="display: block;">
+                <li class="download-pdf-book" onClick="window.print()">
+                    <p>Lecture (PDF)</p>
+                </li>
+                <li class="download-pdf-file">
+                    <a href="" download><p>Book (PDF)</p></a>
+                </li>
+            </ul>
+        </div>
+        <div id="settingsModal" style="display: none;">
+            <p class="modal-title"> Notebook Launcher </p>
+            <div class="modal-desc">
+            <p>
+                Choose public or private cloud service for "Launch" button.
+            </p>
+            </div>
+            <p class="modal-subtitle">Select a server</p>
+            <ul class="modal-servers">
+            <li class="active launcher-public">
+                <span class="label">Public</span>
+                <select id="launcher-public-input">
+                
+                    <option value="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/status.ipynb">Colab</option>
+                
+                </select>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            <li class="launcher-private">
+                <span class="label">Private</span>
+                <input type="text" id="launcher-private-input" data-repourl="https://github.com/QuantEcon/lecture-python-intro.notebooks" data-urlpath="tree/lecture-python-intro.notebooks/status.ipynb" data-branch=main>
+                <i class="fas fa-check-circle"></i>
+            </li>
+            </ul>
+            <p class="launch"><a href="https://colab.research.google.com/github/QuantEcon/lecture-python-intro.notebooks/blob/main/status.ipynb" id="advancedLaunchButton" target="_blank">Launch Notebook</a></p>
+            <script>
+                // QuantEcon Notebook Launcher
+                const launcherTypeElements = document.querySelectorAll('#settingsModal .modal-servers li');
+                // Highlight the server type if previous selection exists
+                if (typeof localStorage.launcherType !== 'undefined') {
+                  for (var i = 0; i < launcherTypeElements.length; i++) {
+                    launcherTypeElements[i].classList.remove('active');
+                    if ( launcherTypeElements[i].classList.contains(localStorage.launcherType) ) {
+                      launcherTypeElements[i].classList.add('active');
+                    }
+                  }
+                }
+                // Highlight server type on click and set local storage value
+                for (var i = 0; i < launcherTypeElements.length; i++) {
+                  launcherTypeElements[i].addEventListener('click', function() {
+                    for (var j = 0; j < launcherTypeElements.length; j++) {
+                      launcherTypeElements[j].classList.remove('active');
+                    }
+                    this.classList.add('active');
+                    if ( this.classList.contains('launcher-private') ) {
+                      localStorage.launcherType = 'launcher-private';
+                    } else if ( this.classList.contains('launcher-public') ) {
+                      localStorage.launcherType = 'launcher-public';
+                    }
+                    setLaunchServer();
+                  })
+                }
+                const launcherPublic = document.getElementById('launcher-public-input');
+                const launcherPrivate = document.getElementById('launcher-private-input');
+                const pageName = "status";
+                const repoURL = "https://github.com/QuantEcon/lecture-python-intro.notebooks";
+                const urlPath = "tree/lecture-python-intro.notebooks/status.ipynb";
+                const branch = "main"
+                const launchNotebookLink = document.getElementById('advancedLaunchButton');
+
+                // Highlight public server option if previous selection exists
+                if (typeof localStorage.launcherPublic !== 'undefined') {
+                  launcherPublic.value = localStorage.launcherPublic;
+                }
+                // Update local storage upon public server selection
+                launcherPublic.addEventListener('change', (event) => {
+                  setLaunchServer();
+                });
+                // Populate private server input if previous entry exists
+                if (typeof localStorage.launcherPrivate !== 'undefined') {
+                  launcherPrivate.value = localStorage.launcherPrivate;
+                }
+                // Update local storage when a private server is entered
+                launcherPrivate.addEventListener('input', (event) => {
+                  setLaunchServer();
+                });
+
+                // Function to update the "Launch Notebook" link href
+                function setLaunchServer() {
+                  launchNotebookLink.removeAttribute("style")
+                  if ( localStorage.launcherType == 'launcher-private' ) {
+                    let repoPrefix = "/user-redirect/git-pull?repo=" + repoURL + "&branch=" + branch + "&urlpath=" + urlPath;
+                    launcherPrivateValue = launcherPrivate.value
+                    if (!launcherPrivateValue) {
+                        launchNotebookLink.removeAttribute("href")
+                        launchNotebookLink.style.background = "grey"
+                        return
+                    }
+                    localStorage.launcherPrivate = launcherPrivateValue;
+                    privateServer = localStorage.launcherPrivate.replace(/\/$/, "")
+                    if (!privateServer.includes("http")) {
+                        privateServer = "http://" + privateServer
+                    }
+                    launchNotebookLinkURL = privateServer + repoPrefix;
+                  } else if ( localStorage.launcherType == 'launcher-public' ) {
+                    launcherPublicValue = launcherPublic.options[launcherPublic.selectedIndex].value;
+                    localStorage.launcherPublic = launcherPublicValue;
+                    launchNotebookLinkURL = localStorage.launcherPublic;
+                  }
+                  if (launchNotebookLinkURL) launchNotebookLink.href = launchNotebookLinkURL;
+                }
+                // Check if user has previously selected a server
+                if ( (typeof localStorage.launcherPrivate !== 'undefined') || (typeof localStorage.launcherPublic !== 'undefined') ) {
+                  setLaunchServer();
+                }
+                </script>
+
+        </div>
+
+    </div> <!-- .wrapper-->
+  </body>
+</html>
