@@ -2,8 +2,8 @@
 
 An undergraduate lecture series on the foundations of computational economics, designed and written by [Thomas J. Sargent](http://www.tomsargent.com/) and [John Stachurski](https://johnstachurski.net/).
 
-**Original live site:** <https://intro.quantecon.org/>
-**Customized live site** <https://cmg777.github.io/lecture-python-intro/>
+- **Original live site:** <https://intro.quantecon.org/>
+- **Customized live site** <https://cmg777.github.io/lecture-python-intro/>
 
 The lectures cover topics from economic data analysis and supply-demand models through linear and nonlinear dynamics, probability, optimization, and estimation — all using Python. Each lecture is a MyST Markdown file that contains executable Python code, mathematical notation, and narrative text, built into a website using [Jupyter Book](https://jupyterbook.org/).
 
